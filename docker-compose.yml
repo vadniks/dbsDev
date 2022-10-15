@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  mysql:
+    container_name: mysql-ccs
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+volumes:
+    db:
