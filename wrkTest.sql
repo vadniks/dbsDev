@@ -259,6 +259,27 @@ select components.componentId, components.name from boughtComponents
     inner join components on components.componentId = boughtComponents.componentId order by componentId desc; # (8) sort and join
 
 select components.componentId, components.name from components
+    left join boughtComponents on components.componentId = boughtComponents.componentId order by components.componentId;
+
+select components.componentId, components.name from components
+    right join boughtComponents on components.componentId = boughtComponents.componentId order by components.componentId;
+
+select components.componentId, components.name from components
     left join boughtComponents on components.componentId = boughtComponents.componentId union
     select components.componentId, components.name from components
     right join boughtComponents on components.componentId = boughtComponents.componentId; # full pouter join
+
+
+--
+
+select components.componentId, components.name, boughtComponents.componentId from boughtComponents
+    inner join components on components.componentId = boughtComponents.componentId
+    order by components.componentId desc; # (8) sort and join
+
+select components.componentId, components.name, boughtComponents.componentId from components
+    left join boughtComponents on components.componentId = boughtComponents.componentId
+    order by components.componentId;
+
+select components.componentId, components.name, boughtComponents.componentId from components
+    right join boughtComponents on components.componentId = boughtComponents.componentId
+    order by components.componentId;

@@ -170,14 +170,20 @@ select componentId, name from components where not exists
     (select componentId from boughtComponents where components.componentId = boughtComponents.componentId)
     order by componentId; # (6) difference
 
-select components.componentId, components.name from boughtComponents
-    inner join components on components.componentId = boughtComponents.componentId order by componentId desc; # (8) sort and join
+select components.componentId, components.name, boughtComponents.componentId from boughtComponents
+    inner join components on components.componentId = boughtComponents.componentId
+    order by components.componentId desc; # (8) sort and join
 
-select components.componentId, components.name from components
-    left join boughtComponents on components.componentId = boughtComponents.componentId order by components.componentId;
+# select orders.orderId, orders.clientId, boughtComponents.componentId from orders
+#     left join boughtComponents on orders.clientId = boughtComponents.clientId and orders.orderId = boughtComponents.orderId order by orders.orderId;
 
-select components.componentId, components.name from components
-    right join boughtComponents on components.componentId = boughtComponents.componentId order by components.componentId;
+select components.componentId, components.name, boughtComponents.componentId from components
+    left join boughtComponents on components.componentId = boughtComponents.componentId
+    order by components.componentId;
+
+select components.componentId, components.name, boughtComponents.componentId from components
+    right join boughtComponents on components.componentId = boughtComponents.componentId
+    order by components.componentId;
 
 select components.componentId, components.name from components
     left join boughtComponents on components.componentId = boughtComponents.componentId union
