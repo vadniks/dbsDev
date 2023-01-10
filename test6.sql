@@ -67,12 +67,12 @@ insert into clients(name, surname, phone, address, email, password) values(
     'Michel', 'Meclins', 1235607891, 'Clarkson Street 80', 'mclmcs@email.com',
     '$2a$12$1B6k3quEpOzUijv/XAxscODeXPEsfE645ObO0Aj8EgCCPPF0RJqMi');
 
-insert into employeeInfo(name, surname, phone, email, salary, jobType) values(
-    'Annabel', 'Wes', 1634007880, 'ablwes@email.com', 300, 0);
-insert into employeeInfo(name, surname, phone, email, salary, jobType) values(
-    'James', 'Lims', 1045001651, 'vgs165@email.com', 200, 1);
-insert into employeeInfo(name, surname, phone, email, salary, jobType) values(
-    'Agatha', 'Milkins', 1200067800, 'milkins25a@email.com', 250, 1);
+insert into employeeInfo(name, surname, phone, email, password, salary, jobType) values(
+    'Annabel', 'Wes', 1634007880, 'ablwes@email.com', 'pass', 300, 0);
+insert into employeeInfo(name, surname, phone, email, password, salary, jobType) values(
+    'James', 'Lims', 1045001651, 'vgs165@email.com', 'pass', 200, 1);
+insert into employeeInfo(name, surname, phone, email, password, salary, jobType) values(
+    'Agatha', 'Milkins', 1200067800, 'milkins25a@email.com', 'pass', 250, 1);
 
 insert into managers(employeeId) values(1);
 
@@ -88,15 +88,15 @@ values(1, 1, 2, 102, 2, 1006000011);
 insert into orders(clientId, managerId, deliveryWorkerId, cost, count, creationDatetime)
 values(1, 1, 2, 123, 4, 1006540011);
 
-insert into boughtComponents(componentId, orderId, clientId) values(1, 1, 1);
-insert into boughtComponents(componentId, orderId, clientId) values(2, 1, 1);
-insert into boughtComponents(componentId, orderId, clientId) values(3, 1, 1);
-insert into boughtComponents(componentId, orderId, clientId) values(4, 2, 2);
-insert into boughtComponents(componentId, orderId, clientId) values(5, 3, 3);
-insert into boughtComponents(componentId, orderId, clientId) values(6, 3, 3);
-insert into boughtComponents(componentId, orderId, clientId) values(7, 1, 1);
-insert into boughtComponents(componentId, orderId, clientId) values(7, 2, 2);
-insert into boughtComponents(componentId, orderId, clientId) values(7, 3, 3);
+insert into boughtComponents(componentId, orderId) values(1, 1);
+insert into boughtComponents(componentId, orderId) values(2, 1);
+insert into boughtComponents(componentId, orderId) values(3, 1);
+insert into boughtComponents(componentId, orderId) values(4, 2);
+insert into boughtComponents(componentId, orderId) values(5, 3);
+insert into boughtComponents(componentId, orderId) values(6, 3);
+insert into boughtComponents(componentId, orderId) values(7, 1);
+insert into boughtComponents(componentId, orderId) values(7, 2);
+insert into boughtComponents(componentId, orderId) values(7, 3);
 
 -- part 2, selections --------------------------------------------------------
 

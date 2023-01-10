@@ -5,73 +5,72 @@ create database db;
 use db;
 
 create table components(
-    componentId int(6) unsigned not null auto_increment unique,
-    name varchar(32) not null unique,
-    type int(1) unsigned not null,
-    description varchar(8192) not null,
-    cost int(6) unsigned not null,
-    image varchar(64) null,
-    count int(6) unsigned not null,
+    componentId integer unsigned not null auto_increment unique,
+    name varchar(255) not null unique,
+    type integer unsigned not null,
+    description varchar(255) not null,
+    cost integer unsigned not null,
+    image varchar(255) null,
+    count integer unsigned not null,
     primary key (componentId)
 );
 
 create table clients(
-    clientId int(6) unsigned not null auto_increment unique,
-    name varchar(16) not null,
-    surname varchar(16) not null,
-    phone int(11) unsigned not null unique, /* +1 234 567 89 00 */
-    address varchar(256) not null,
-    email varchar(32) not null unique,
-    password varchar(256) not null,
+    clientId integer unsigned not null auto_increment unique,
+    name varchar(255) not null,
+    surname varchar(255) not null,
+    phone integer unsigned not null unique,
+    address varchar(255) not null,
+    email varchar(255) not null unique,
+    password varchar(255) not null,
     primary key (clientId)
 );
 
 create table employeeInfo(
-    employeeId int(6) unsigned not null auto_increment unique,
-    name varchar(16) not null,
-    surname varchar(16) not null,
-    phone int(11) unsigned not null unique,
-    email varchar(32) not null unique,
-    salary int(4) unsigned not null,
-    jobType int(1) unsigned not null,
+    employeeId integer unsigned not null auto_increment unique,
+    name varchar(255) not null,
+    surname varchar(255) not null,
+    phone integer unsigned not null unique,
+    email varchar(255) not null unique,
+    password varchar(255) not null,
+    salary integer unsigned not null,
+    jobType integer unsigned not null,
     primary key (employeeId)
 );
 
 create table managers(
-    employeeId int(6) unsigned not null auto_increment unique,
+    employeeId integer unsigned not null auto_increment unique,
     foreign key (employeeId) references employeeInfo(employeeId) on update cascade on delete cascade,
     primary key (employeeId)
 );
 
 create table deliveryWorkers(
-    employeeId int(6) unsigned not null auto_increment unique,
+    employeeId integer unsigned not null auto_increment unique,
     foreign key (employeeId) references employeeInfo(employeeId) on update cascade on delete cascade,
     primary key (employeeId)
 );
 
 create table orders(
-    orderId int(6) unsigned not null auto_increment,
-    clientId int(6) unsigned not null,
-    managerId int(2) unsigned null,
-    deliveryWorkerId int(2) unsigned null,
-    cost int(6) unsigned not null,
-    count int(3) unsigned not null,
-    creationDatetime int(10) unsigned not null,
-    completionDatetime int (10) unsigned null,
+    orderId integer unsigned not null auto_increment,
+    clientId integer unsigned not null,
+    managerId integer unsigned null,
+    deliveryWorkerId integer unsigned null,
+    cost integer unsigned not null,
+    count integer unsigned not null,
+    creationDatetime integer unsigned not null,
+    completionDatetime integer unsigned null,
     foreign key (clientId) references clients(clientId) on update cascade on delete cascade,
     foreign key (managerId) references managers(employeeId) on update cascade on delete set null,
     foreign key (deliveryWorkerId) references deliveryWorkers(employeeId) on update cascade on delete set null,
-    primary key (orderId, clientId)
+    primary key (orderId)
 );
 
 create table boughtComponents(
-    componentId int(6) unsigned not null,
-    orderId int(6) unsigned not null,
-    clientId int(6) unsigned not null,
+    componentId integer unsigned not null,
+    orderId integer unsigned not null,
     foreign key (componentId) references components(componentId) on update cascade on delete cascade,
     foreign key (orderId) references orders(orderId) on update cascade on delete cascade,
-    foreign key (clientId) references clients(clientId) on update cascade on delete cascade,
-    primary key (componentId, orderId, clientId)
+    primary key (componentId, orderId)
 );
 
 create unique index componentIdX on components(componentId);
@@ -91,7 +90,7 @@ create unique index deliveryWorkerIdX on deliveryWorkers(employeeId);
 create unique index orderIdsX on orders(orderId, clientId);
 create index orderIdX on orders(orderId);
 create index orderClientIdX on orders(clientId);
-create unique index boughtComponentIdsX on boughtComponents(componentId, orderId, clientId);
+create unique index boughtComponentIdsX on boughtComponents(componentId, orderId);
 
 -- part 3, triggers ----------------------------------------------------------
 
